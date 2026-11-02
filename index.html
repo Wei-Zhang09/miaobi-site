@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>妙笔 Miaobi — AI 长文写作与公众号排版工具</title>
+<meta name="description" content="妙笔：对标喂料、爆款标题、批量成文、降AI味、一键排版导出，一条流水完成一篇可发布的公众号文章。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%237C3AED'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23fff' font-family='serif'%3E妙%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --accent:#7C3AED; --accent2:#A78BFA; --cta:#0891B2; --bg:#FAF5FF;
+  --fg:#1E1B4B; --card:#FFFFFF; --muted:#6B7280; --border:#DDD6FE;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Segoe UI",sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.7; overflow-x:hidden;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+nav .links a{padding:8px 4px}                       /* 触控目标热区 */
+summary{padding:2px 0;list-style:none}
+.qa details{cursor:pointer}
+
+/* hero */
+header{position:sticky;top:0;z-index:10;background:rgba(250,245,255,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav{display:flex;align-items:center;gap:28px;padding:14px 0}
+nav .logo{font-weight:700;font-size:20px;color:var(--fg)}
+nav .logo span{color:var(--accent)}
+nav .links{display:flex;gap:22px;margin-left:auto;font-size:14.5px}
+nav .links a{color:var(--fg);opacity:.8}
+.hero{padding:88px 0 72px;text-align:center;position:relative;overflow:hidden}
+.hero .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none}
+.hero .b1{width:420px;height:420px;background:var(--accent2);top:-160px;left:-120px}
+.hero .b2{width:380px;height:380px;background:#67E8F9;top:-120px;right:-100px;opacity:.25}
+.hero h1{font-size:46px;font-weight:700;letter-spacing:-1px;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p.sub{font-size:19px;color:var(--muted);max-width:640px;margin:0 auto 34px}
+.badges{display:flex;gap:10px;justify-content:center;margin-bottom:34px;flex-wrap:wrap}
+.badge{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:5px 14px;font-size:13px;color:var(--fg)}
+.cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--accent),#6D28D9);color:#fff;font-size:17px;font-weight:600;padding:14px 34px;border-radius:12px;box-shadow:0 8px 24px rgba(124,58,237,.35);transition:transform .15s ease,box-shadow .15s ease}
+.cta:hover{text-decoration:none;transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,58,237,.45)}
+.cta.ghost{background:var(--card);color:var(--accent);border:1.5px solid var(--accent);box-shadow:none;margin-left:14px}
+.meta{margin-top:18px;font-size:13px;color:var(--muted)}
+
+/* pipeline */
+.pipeline{padding:64px 0}
+.pipeline h2,.features h2,.pool h2,.faq h2{text-align:center;font-size:30px;font-weight:700;margin-bottom:10px}
+.pipeline .lead,.features .lead,.pool .lead{text-align:center;color:var(--muted);margin-bottom:44px;font-size:15.5px}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 16px;text-align:center}
+.step .n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.step h3{font-size:15.5px;margin-bottom:6px}
+.step p{font-size:13px;color:var(--muted)}
+
+/* features */
+.features{padding:64px 0;background:linear-gradient(180deg,#F5EDFF,#FAF5FF)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:box-shadow .2s ease,transform .2s ease}
+.card:hover{box-shadow:0 10px 30px rgba(30,27,75,.08);transform:translateY(-3px)}
+.card .ic{font-size:24px;margin-bottom:10px}
+.card h3{font-size:17px;margin-bottom:8px}
+.card p{font-size:13.5px;color:var(--muted)}
+
+/* pool */
+.pool{padding:64px 0}
+.pool-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:760px;margin:0 auto}
+.pool-box p{margin-bottom:12px;font-size:14.5px}
+.pool-box code{background:#F3E8FF;padding:2px 8px;border-radius:6px;font-size:13px;font-family:ui-monospace,Consolas,monospace}
+.pool-box ul{padding-left:22px;font-size:14px;color:var(--muted)}
+.pool-box li{margin:6px 0}
+
+/* faq + download */
+.faq{padding:64px 0}
+.qa{max-width:760px;margin:0 auto}
+.qa details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:12px}
+.qa summary{cursor:pointer;font-weight:600;font-size:15px}
+.qa p{margin-top:10px;font-size:14px;color:var(--muted)}
+footer{padding:44px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13.5px}
+footer .f2{margin-top:8px}
+
+@media (max-width:860px){
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:34px}
+  nav .links{display:none}
+}
+@media (max-width:560px){
+  .steps{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">妙笔 <span>Miaobi</span></div>
+      <div class="links">
+        <a href="#pipeline">写作流水</a>
+        <a href="#features">功能</a>
+        <a href="#pool">规则池</a>
+        <a href="#faq">常见问题</a>
+        <a href="#download" style="color:var(--accent);font-weight:600">下载</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="wrap">
+    <h1>从素材到可发布的公众号文章<br><em>一条流水跑完</em></h1>
+    <p class="sub">妙笔是面向自媒体写作者的 AI 长文写作与排版工具：对标喂料、爆款标题、
+    批量成文、降 AI 味、一键排版导出——不用在十几个工具之间来回倒腾。</p>
+    <div class="badges">
+      <span class="badge">🀄 中文长文专调</span>
+      <span class="badge">🤖 13 维度标题引擎</span>
+      <span class="badge">🧹 降 AI 味 + 合规检测</span>
+      <span class="badge">📱 公众号排版一键导出</span>
+    </div>
+    <a class="cta" href="#download">⬇ 下载妙笔</a>
+    <a class="cta ghost" href="#pipeline">看看它怎么工作</a>
+    <div class="meta">Windows · v2.2.1 · 本地引擎可选 · 数据不出本机</div>
+  </div>
+</section>
+
+<section class="pipeline" id="pipeline">
+  <div class="wrap">
+    <h2>写作流水</h2>
+    <p class="lead">按一篇文档的生命周期组织，五个阶段走完就是一篇成稿</p>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>对标喂料</h3><p>粘贴对标文章，自动拆解结构/语气/词汇画像</p></div>
+      <div class="step"><div class="n">2</div><h3>爆款标题</h3><p>13 知识维度 × 7 写法组合发散，硬性字数铁律</p></div>
+      <div class="step"><div class="n">3</div><h3>批量成文</h3><p>标题批量导入变体文章，防查重缓存杜绝一稿多发</p></div>
+      <div class="step"><div class="n">4</div><h3>降 AI 味</h3><p>本地推理引擎 1-5 档强度，LLM 双阶段回退</p></div>
+      <div class="step"><div class="n">5</div><h3>排版导出</h3><p>7 套预设智能配图，所见即所得导出完整 HTML</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="wrap">
+    <h2>为中文长文而生的细节</h2>
+    <p class="lead">不是通用 ChatGPT 套壳，每个环节按自媒体写作的真实工序打磨</p>
+    <div class="grid">
+      <div class="card"><div class="ic">🎯</div><h3>标题维度引擎</h3><p>真相纠偏 / 深层拆解 / 人性洞察 / 反常识等 13 个知识维度，每维度最多用 2 次，逼模型换角度而不是换词。</p></div>
+      <div class="card"><div class="ic">🧠</div><h3>风格画像改写</h3><p>对标文章拆成 opening/body/ending 节奏档案，改写时严格按画像走，学的是骨不是皮。</p></div>
+      <div class="card"><div class="ic">🛡️</div><h3>防查重缓存</h3><p>每篇生成稿入本地缓存；高度相似话题自动注入防重复上下文，写无可写时干脆放弃，不发重复稿。</p></div>
+      <div class="card"><div class="ic">🧹</div><h3>降 AI 味流水</h3><p>回声剥离 / 26 对硬替换 / 数字保护 / AI 腔检测，本地引擎整段改写优先，断网也能跑。</p></div>
+      <div class="card"><div class="ic">⚖️</div><h3>合规检测 + 共享规则池</h3><p>极限词 / 联系方式 / 重复率 / 同质化交叉检测；规则池全体用户共享，越用越准。</p></div>
+      <div class="card"><div class="ic">📰</div><h3>公众号排版</h3><p>7 套预设：小标题识别、重点句自动加粗、分隔条、渐变色；320 字/张智能配图；原生预览即最终效果。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="pool" id="pool">
+  <div class="wrap">
+    <h2>共享规则池</h2>
+    <p class="lead">合规词库和写作教训由所有用户共建，每 24 小时自动同步</p>
+    <div class="pool-box">
+      <p>妙笔的合规检测词库不止是内置规则：客户端会定期从这个仓库拉取
+      <code>rules/pool.json</code>，池子里的新增极限词、AI 腔、真实踩坑教训会自动并入你的检测。</p>
+      <ul>
+        <li>拉取走公共 CDN，无需注册账号，断网自动回退本地缓存</li>
+        <li>你的本地教训库可一键导出贡献包，审核后并入池子</li>
+        <li>规则池与本页面同仓库开源：<code>rules/pool.json</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <h2>常见问题</h2>
+    <div class="qa">
+      <details><summary>妙笔是开源的吗？</summary><p>软件本体闭源（本仓库只放官网、规则池和发布包）；规则池数据开源共建。</p></details>
+      <details><summary>我的文章数据会上传吗？</summary><p>不会。文章、密钥、缓存全部留在本机；唯一的外联是 LLM 中转调用和你主动触发的规则池拉取/更新检查。</p></details>
+      <details><summary>需要什么网络环境？</summary><p>写作走你自己的 Claude 兼容中转线路（线路池测速择优）；规则池同步走公共 CDN，普通网络即可。</p></details>
+      <details><summary>支持 Mac / Linux 吗？</summary><p>当前为 Windows 版，Mac/Linux 在计划中。</p></details>
+      <details><summary>怎么获得激活码？</summary><p>本地模式开箱即用全部功能；离线激活码面向发行渠道，联系维护者获取。</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="pool" id="download">
+  <div class="wrap" style="text-align:center;padding-bottom:88px">
+    <h2>下载妙笔</h2>
+    <p class="lead">解压即用，无需安装；首次启动自动检查更新</p>
+    <a class="cta" href="https://github.com/Wei-Zhang09/miaobi-site/releases/latest">⬇ 从 Releases 获取最新版</a>
+    <div class="meta">历史版本与更新日志见 <a href="https://github.com/Wei-Zhang09/miaobi-site/releases">Releases 页</a></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>妙笔 Miaobi · v2.2.1</div>
+    <div class="f2">规则池共建与问题反馈：<a href="https://github.com/Wei-Zhang09/miaobi-site">Wei-Zhang09/miaobi-site</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
