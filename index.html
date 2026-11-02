@@ -21,7 +21,7 @@ body{
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
 a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-nav .links a{padding:8px 4px}                       /* 触控目标热区 */
+nav .links a{padding:8px 4px}
 summary{padding:2px 0;list-style:none}
 .qa details{cursor:pointer}
 
@@ -32,7 +32,7 @@ nav .logo{font-weight:700;font-size:20px;color:var(--fg)}
 nav .logo span{color:var(--accent)}
 nav .links{display:flex;gap:22px;margin-left:auto;font-size:14.5px}
 nav .links a{color:var(--fg);opacity:.8}
-.hero{padding:88px 0 72px;text-align:center;position:relative;overflow:hidden}
+.hero{padding:88px 0 56px;text-align:center;position:relative;overflow:hidden}
 .hero .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.35;pointer-events:none}
 .hero .b1{width:420px;height:420px;background:var(--accent2);top:-160px;left:-120px}
 .hero .b2{width:380px;height:380px;background:#67E8F9;top:-120px;right:-100px;opacity:.25}
@@ -46,51 +46,92 @@ nav .links a{color:var(--fg);opacity:.8}
 .cta.ghost{background:var(--card);color:var(--accent);border:1.5px solid var(--accent);box-shadow:none;margin-left:14px}
 .meta{margin-top:18px;font-size:13px;color:var(--muted)}
 
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin:44px 0 0}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 12px;text-align:center}
+.stat b{display:block;font-size:26px;color:var(--accent);letter-spacing:-.5px}
+.stat span{font-size:12.5px;color:var(--muted)}
+
+/* sections */
+section{padding:64px 0}
+.tint{background:linear-gradient(180deg,#F5EDFF,#FAF5FF)}
+h2.sec{text-align:center;font-size:30px;font-weight:700;margin-bottom:10px}
+p.lead{text-align:center;color:var(--muted);margin-bottom:44px;font-size:15.5px}
+
 /* pipeline */
-.pipeline{padding:64px 0}
-.pipeline h2,.features h2,.pool h2,.faq h2{text-align:center;font-size:30px;font-weight:700;margin-bottom:10px}
-.pipeline .lead,.features .lead,.pool .lead{text-align:center;color:var(--muted);margin-bottom:44px;font-size:15.5px}
 .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:22px 16px;text-align:center}
 .step .n{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
 .step h3{font-size:15.5px;margin-bottom:6px}
 .step p{font-size:13px;color:var(--muted)}
 
-/* features */
-.features{padding:64px 0;background:linear-gradient(180deg,#F5EDFF,#FAF5FF)}
+/* features + personas */
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.grid2{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;transition:box-shadow .2s ease,transform .2s ease}
 .card:hover{box-shadow:0 10px 30px rgba(30,27,75,.08);transform:translateY(-3px)}
 .card .ic{font-size:24px;margin-bottom:10px}
 .card h3{font-size:17px;margin-bottom:8px}
 .card p{font-size:13.5px;color:var(--muted)}
+.grid2 .card h3{font-size:15.5px}
+
+/* quickstart */
+.qs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.qs .card b.tag{display:inline-block;background:#F3E8FF;color:var(--accent);border-radius:8px;padding:2px 10px;font-size:12.5px;margin-bottom:12px}
+.qs .card h3{font-size:16.5px}
+.qs .card p{margin-bottom:6px}
+.shot{margin-top:40px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:14px;box-shadow:0 14px 40px rgba(30,27,75,.1)}
+.shot img{width:100%;border-radius:10px;display:block}
+.shot .cap{text-align:center;font-size:12.5px;color:var(--muted);padding:10px 0 4px}
+
+/* pricing */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tier{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;text-align:center;position:relative}
+.tier.hot{border:2px solid var(--accent);box-shadow:0 12px 34px rgba(124,58,237,.18)}
+.tier .ribbon{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),#6D28D9);color:#fff;font-size:12px;padding:3px 14px;border-radius:999px}
+.tier h3{font-size:18px;margin-bottom:6px}
+.tier .dur{font-size:13px;color:var(--muted);margin-bottom:14px}
+.tier .price{font-size:28px;font-weight:700;color:var(--accent);margin-bottom:14px}
+.tier .price small{font-size:13px;color:var(--muted);font-weight:400}
+.tier ul{text-align:left;padding-left:20px;font-size:13.5px;color:var(--muted)}
+.tier li{margin:7px 0}
+.tier .get{margin-top:18px;display:inline-block;background:#F3E8FF;color:var(--accent);border-radius:10px;padding:9px 22px;font-size:14px;font-weight:600}
+.tier .get:hover{text-decoration:none;background:#E9D5FF}
+
+/* niches */
+.niches{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.niches span{background:var(--card);border:1px solid var(--border);border-radius:999px;padding:6px 16px;font-size:13.5px}
+.niches .plus{border-style:dashed;color:var(--accent)}
 
 /* pool */
-.pool{padding:64px 0}
 .pool-box{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:760px;margin:0 auto}
 .pool-box p{margin-bottom:12px;font-size:14.5px}
 .pool-box code{background:#F3E8FF;padding:2px 8px;border-radius:6px;font-size:13px;font-family:ui-monospace,Consolas,monospace}
 .pool-box ul{padding-left:22px;font-size:14px;color:var(--muted)}
 .pool-box li{margin:6px 0}
 
-/* faq + download */
-.faq{padding:64px 0}
+/* faq */
 .qa{max-width:760px;margin:0 auto}
 .qa details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:12px}
 .qa summary{cursor:pointer;font-weight:600;font-size:15px}
 .qa p{margin-top:10px;font-size:14px;color:var(--muted)}
+
+/* download + footer */
+#download .lead{margin-bottom:30px}
 footer{padding:44px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);font-size:13.5px}
 footer .f2{margin-top:8px}
 
 @media (max-width:860px){
   .steps{grid-template-columns:repeat(2,1fr)}
-  .grid{grid-template-columns:1fr 1fr}
+  .grid,.qs,.tiers{grid-template-columns:1fr 1fr}
+  .grid2{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
   .hero h1{font-size:34px}
   nav .links{display:none}
 }
 @media (max-width:560px){
-  .steps{grid-template-columns:1fr}
-  .grid{grid-template-columns:1fr}
+  .steps,.grid,.grid2,.qs,.tiers{grid-template-columns:1fr}
+  .cta.ghost{margin-left:0;margin-top:12px}
 }
 </style>
 </head>
@@ -103,7 +144,8 @@ footer .f2{margin-top:8px}
       <div class="links">
         <a href="#pipeline">写作流水</a>
         <a href="#features">功能</a>
-        <a href="#pool">规则池</a>
+        <a href="#start">快速上手</a>
+        <a href="#price">获取授权</a>
         <a href="#faq">常见问题</a>
         <a href="#download" style="color:var(--accent);font-weight:600">下载</a>
       </div>
@@ -125,13 +167,20 @@ footer .f2{margin-top:8px}
     </div>
     <a class="cta" href="#download">⬇ 下载妙笔</a>
     <a class="cta ghost" href="#pipeline">看看它怎么工作</a>
-    <div class="meta">Windows · v2.2.1 · 本地引擎可选 · 数据不出本机</div>
+    <div class="meta">Windows · v2.2.1 · 本地引擎可选 · 文章数据不出本机</div>
+    <div class="stats">
+      <div class="stat"><b>1×10</b><span>单标题变体文章</span></div>
+      <div class="stat"><b>13×7</b><span>标题维度组合</span></div>
+      <div class="stat"><b>150-2500</b><span>字 · 14 档篇幅</span></div>
+      <div class="stat"><b>7 套</b><span>排版预设</span></div>
+      <div class="stat"><b>24h</b><span>共享规则池同步</span></div>
+    </div>
   </div>
 </section>
 
 <section class="pipeline" id="pipeline">
   <div class="wrap">
-    <h2>写作流水</h2>
+    <h2 class="sec">写作流水</h2>
     <p class="lead">按一篇文档的生命周期组织，五个阶段走完就是一篇成稿</p>
     <div class="steps">
       <div class="step"><div class="n">1</div><h3>对标喂料</h3><p>粘贴对标文章，自动拆解结构/语气/词汇画像</p></div>
@@ -140,12 +189,16 @@ footer .f2{margin-top:8px}
       <div class="step"><div class="n">4</div><h3>降 AI 味</h3><p>本地推理引擎 1-5 档强度，LLM 双阶段回退</p></div>
       <div class="step"><div class="n">5</div><h3>排版导出</h3><p>7 套预设智能配图，所见即所得导出完整 HTML</p></div>
     </div>
+    <div class="shot" id="appshot">
+      <img src="images/app-batch.png" alt="妙笔批量原创视图：标题导入与篇幅控制">
+      <div class="cap">批量原创视图：标题列表导入、每题变体数与 14 档篇幅控制、生成直入防查重缓存</div>
+    </div>
   </div>
 </section>
 
-<section class="features" id="features">
+<section class="features tint" id="features">
   <div class="wrap">
-    <h2>为中文长文而生的细节</h2>
+    <h2 class="sec">为中文长文而生的细节</h2>
     <p class="lead">不是通用 ChatGPT 套壳，每个环节按自媒体写作的真实工序打磨</p>
     <div class="grid">
       <div class="card"><div class="ic">🎯</div><h3>标题维度引擎</h3><p>真相纠偏 / 深层拆解 / 人性洞察 / 反常识等 13 个知识维度，每维度最多用 2 次，逼模型换角度而不是换词。</p></div>
@@ -158,17 +211,78 @@ footer .f2{margin-top:8px}
   </div>
 </section>
 
-<section class="pool" id="pool">
+<section id="who">
   <div class="wrap">
-    <h2>共享规则池</h2>
+    <h2 class="sec">适合谁用</h2>
+    <p class="lead">按真实写作场景设计，四类人上手就有收益</p>
+    <div class="grid2">
+      <div class="card"><div class="ic">📱</div><h3>矩阵运营</h3><p>多号并行、批量生产批量排版，配图降AI一条流水收口，一个人顶一个编辑组。</p></div>
+      <div class="card"><div class="ic">✍️</div><h3>日更创作者</h3><p>1 个标题出 10 篇不同角度，防查重缓存保证不自我重复，日更有存量。</p></div>
+      <div class="card"><div class="ic">🏢</div><h3>企业新媒体</h3><p>合规检测 + 教训库沉淀团队经验，词池规则全公司共享，口径统一。</p></div>
+      <div class="card"><div class="ic">🚀</div><h3>副业新手</h3><p>本地模式开箱全功能，照着快速上手三步走，复制粘贴就能发布。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="start">
+  <div class="wrap">
+    <h2 class="sec">快速上手</h2>
+    <p class="lead">三步开跑：下载 → 激活 → 接算力</p>
+    <div class="qs">
+      <div class="card"><b class="tag">STEP 1</b><h3>下载解压</h3><p>从 Releases 拿最新版，解压即用无需安装。本地模式全功能开箱可用，先试再买。</p></div>
+      <div class="card"><b class="tag">STEP 2</b><h3>激活授权</h3><p>打开软件复制机器码，联系维护者获取激活码——一机一码、离线签发、支持远程吊销。</p></div>
+      <div class="card"><b class="tag">STEP 3</b><h3>接入算力</h3><p>填入你自己的 Claude 兼容中转线路（软件不代充不抽成），线路池自动测速择优，然后开写。</p></div>
+    </div>
+    <p class="lead" style="margin:36px 0 20px">适配领域（支持自定义提示词扩展任意赛道）</p>
+    <div class="niches">
+      <span>养老金</span><span>三农</span><span>历史</span><span>育儿</span><span>科技</span><span>体育</span>
+      <span>娱乐</span><span>房产</span><span>职场</span><span>情感</span><span>认知觉醒</span><span>美食</span>
+      <span>养生</span><span>教育</span><span>医疗</span><span>法律</span><span>财经</span>
+      <span class="plus">+ 自定义领域</span>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="wrap">
+    <h2 class="sec">获取授权</h2>
+    <p class="lead">软件收授权费，算力走你自己的中转线路按量计费——不用不扣费</p>
+    <div class="tiers">
+      <!-- 价格直接改下面三个 .price 文本 -->
+      <div class="tier">
+        <h3>体验版</h3><div class="dur">1 天全功能试用</div>
+        <div class="price">面议<small> / 天</small></div>
+        <ul><li>全部功能开放</li><li>低门槛先试再买</li><li>适合评估适配领域</li></ul>
+        <a class="get" href="#download">先下载试用</a>
+      </div>
+      <div class="tier hot">
+        <div class="ribbon">最受欢迎</div>
+        <h3>正式版</h3><div class="dur">按月授权</div>
+        <div class="price">面议<small> / 月</small></div>
+        <ul><li>全部功能</li><li>规则池共享与更新</li><li>激活码支持远程吊销补发</li></ul>
+        <a class="get" href="https://github.com/Wei-Zhang09/miaobi-site">联系获取</a>
+      </div>
+      <div class="tier">
+        <h3>终身版</h3><div class="dur">一次买断</div>
+        <div class="price">面议<small> / 永久</small></div>
+        <ul><li>终身使用</li><li>后续版本免费更新</li><li>优先响应定制需求</li></ul>
+        <a class="get" href="https://github.com/Wei-Zhang09/miaobi-site">联系获取</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint" id="pool">
+  <div class="wrap">
+    <h2 class="sec">共享规则池</h2>
     <p class="lead">合规词库和写作教训由所有用户共建，每 24 小时自动同步</p>
     <div class="pool-box">
-      <p>妙笔的合规检测词库不止是内置规则：客户端会定期从这个仓库拉取
+      <p>妙笔的合规检测词库不止是内置规则：客户端会定期从官网仓库拉取
       <code>rules/pool.json</code>，池子里的新增极限词、AI 腔、真实踩坑教训会自动并入你的检测。</p>
       <ul>
         <li>拉取走公共 CDN，无需注册账号，断网自动回退本地缓存</li>
         <li>你的本地教训库可一键导出贡献包，审核后并入池子</li>
-        <li>规则池与本页面同仓库开源：<code>rules/pool.json</code></li>
+        <li>规则池与本页面同仓库公开共建：<code>rules/pool.json</code></li>
       </ul>
     </div>
   </div>
@@ -176,20 +290,21 @@ footer .f2{margin-top:8px}
 
 <section class="faq" id="faq">
   <div class="wrap">
-    <h2>常见问题</h2>
+    <h2 class="sec">常见问题</h2>
     <div class="qa">
-      <details><summary>妙笔是开源的吗？</summary><p>软件本体闭源（本仓库只放官网、规则池和发布包）；规则池数据开源共建。</p></details>
+      <details><summary>妙笔是开源的吗？</summary><p>软件本体闭源（官网仓库只放页面、规则池和发布包）；规则池数据开源共建。</p></details>
       <details><summary>我的文章数据会上传吗？</summary><p>不会。文章、密钥、缓存全部留在本机；唯一的外联是 LLM 中转调用和你主动触发的规则池拉取/更新检查。</p></details>
-      <details><summary>需要什么网络环境？</summary><p>写作走你自己的 Claude 兼容中转线路（线路池测速择优）；规则池同步走公共 CDN，普通网络即可。</p></details>
+      <details><summary>激活码怎么运作？</summary><p>一机一码：激活码绑定机器指纹，离线签发生效；名单机制支持远程吊销，换机联系维护者补发。</p></details>
+      <details><summary>算力费用怎么算？</summary><p>软件只收授权费。写作走你自己的 Claude 兼容中转线路，按量计费、不用不扣——密钥存本机，不经我们手。</p></details>
+      <details><summary>需要什么网络环境？</summary><p>写作走中转线路（线路池测速择优，支持自定义供应商）；规则池同步走公共 CDN，普通网络即可。</p></details>
       <details><summary>支持 Mac / Linux 吗？</summary><p>当前为 Windows 版，Mac/Linux 在计划中。</p></details>
-      <details><summary>怎么获得激活码？</summary><p>本地模式开箱即用全部功能；离线激活码面向发行渠道，联系维护者获取。</p></details>
     </div>
   </div>
 </section>
 
-<section class="pool" id="download">
+<section id="download">
   <div class="wrap" style="text-align:center;padding-bottom:88px">
-    <h2>下载妙笔</h2>
+    <h2 class="sec">下载妙笔</h2>
     <p class="lead">解压即用，无需安装；首次启动自动检查更新</p>
     <a class="cta" href="https://github.com/Wei-Zhang09/miaobi-site/releases/latest">⬇ 从 Releases 获取最新版</a>
     <div class="meta">历史版本与更新日志见 <a href="https://github.com/Wei-Zhang09/miaobi-site/releases">Releases 页</a></div>
